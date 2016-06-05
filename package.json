@@ -1,0 +1,24 @@
+{
+  "name": "node-api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm test",
+    "knex": "knex --knexfile ./knexfile.js"
+  },
+  "author": "Enieber Cunha <eniebercunha@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "bookshelf": "^0.9.5",
+    "bookshelf-bcrypt": "^2.0.0",
+    "bookshelf-uuid": "^1.0.0",
+    "boom": "^3.2.1",
+    "hapi": "^13.4.1",
+    "hapi-auth-jwt2": "^7.0.1",
+    "joi": "^8.4.1",
+    "jsonwebtoken": "^7.0.0",
+    "knex": "^0.11.5",
+    "pg": "^4.5.6"
+  }
+}
