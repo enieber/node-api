@@ -1,0 +1,40 @@
+---
+- config:
+  - testset: "User Api"
+
+  #- test:
+  #  - name: "Create User"
+  #- url: "/v1/users"
+  #- method: "POST"
+  #- body: {"email":"tester@company.io", "password":"123", "fone": "123456789"}
+  #  - extract_binds:
+  #  - CURRENTID: {'jsonpath': 'id'}
+    
+#- test:
+# - name: "Get Session"
+# - url: "/v1/session"
+# - method: "POST"
+# - expected_status: [200]
+# - body: {"email":"tester@company.io", "password":"123"}
+#  - headers: {"Content-Type": "application/json"}
+#   - extract_binds:
+#   - 'ACCESSTOKEN': {'jsonpath': 'token'}
+
+
+
+- test:
+  - name: "Get All User"
+  - url: "/v1/users"
+  - method: "GET"
+  - extract_binds:
+    - 'CURRENTID': {'jsonpath_mini': 'id'}
+
+- test:
+  - name: "Get User for ID"
+  - url: {'template':"/v1/user/$CURRENTID"}
+  - method: "GET"
+  
+
+  # - headers: {template: {"Authorization": "$ACCESSTOKEN"}}
+  # - body: {template: "ids[0]=$CURRENTID"}
+

@@ -19,12 +19,12 @@ server.register(require('hapi-auth-jwt2'), (err) => {
     .fetch()
     .then((user) => {
       if(user){
-        cb(null, true, user.toObject())
+        cb(null, true, user.toJSON())
       } else {
         cb(null, false)
       }
     })
-    .cath((err) => cb(err))
+    .catch((err) => cb(err))
   }
 
   server.auth.strategy('jwt', 'jwt', {
@@ -32,6 +32,27 @@ server.register(require('hapi-auth-jwt2'), (err) => {
     validateFunc: validate
   })
 })
+
+server.route({
+  method: 'GET',
+  path: '/v1/users',
+  handler: (request, reply) => {
+    Users.fetchAll()
+    .then((user) => reply(user), (err) => reply(err))
+  }
+})
+
+server.route({
+  method: 'GET',
+  path: '/v1/users/{id}',
+  handler: (request, reply) => {
+    Users.where({'id': request.params.id})
+    .fetch()
+    .then((user) => reply(user), (err) => reply(err))
+  }
+})
+
+
 
 server.route({
   method: 'POST',
